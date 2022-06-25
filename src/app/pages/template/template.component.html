@@ -75,6 +75,31 @@
   </div>
 
   <div class="form-group row">
+    <label class="col-2 col-form-label">genero</label>
+    <div class="col-8">
+      <div class="form-check form-check-inline">
+        <input  class="form-check-input"
+        type="radio" name="genero" id=""
+        value="Masculino"
+        ngModel
+        #genero="ngModel"
+        [class.is-invalid]="genero.invalid && genero.touched">
+        <label class="form-check-label">Masulino</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input  class="form-check-input"
+        type="radio" name="genero" id=""
+        value="Femenino"
+        ngModel
+        #genero="ngModel"
+        [class.is-invalid]="genero.invalid && genero.touched"
+        >
+        <label class="form-check-label">Femenio</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
       <button type="submit" class="btn btn-outline-primary btn-block">

@@ -12,7 +12,8 @@ export class TemplateComponent implements OnInit {
     nombre: 'miguel',
     correo: 'mga@gmail.con',
     apellido: 'gamez',
-    pais:''
+    pais:'',
+
   }
   paises: any[] = [];
 
