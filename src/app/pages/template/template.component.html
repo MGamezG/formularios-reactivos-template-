@@ -1,6 +1,7 @@
 <h4>Formularios <small> Template </small></h4>
+<!--en los template la mayor parte de las acciones son del lado del html-->
 <hr>
-<form autocomplete="off">
+<form autocomplete="off" (ngSubmit)="guardar(forma)" #forma="ngForm"><!--ngsubmit, llama al metodo, y cuando se presiona el boton con submit, va a enviar todos los cambios-->
 
   <div>
 
@@ -10,7 +11,14 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Nombre">
+               name="nombre"
+               [class.is-invalid]="nombre.invalid && nombre.touched"
+              [ngModel]="user.nombre"
+               placeholder="Nombre"
+               required
+               minlength="5"
+               #nombre="ngModel"><!--required, es porque requiere la informacion del campo-->
+               <small class="form-text text-danger">ingrese 5 letras</small>
       </div>
     </div>
 
@@ -20,7 +28,14 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Apellido">
+               name="apellido"
+               [class.is-invalid]="apellido.invalid && apellido.touched"
+               [ngModel]="user.apellido"
+               placeholder="Apellido"
+               required
+               minlength="10"
+               #apellido="ngModel">
+               <small class="form-text text-danger">ingrese 5 letras</small>
       </div>
     </div>
 
@@ -32,7 +47,14 @@
 
       <input class="form-control"
              type="email"
-             placeholder="Correo electrónico">
+             [class.is-invalid]="correo.invalid && correo.touched"
+             [ngModel]="user.correo"
+             name="correo"
+             placeholder="Correo electrónico"
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             required
+             #correo="ngModel">
+             <small class="form-text text-danger">ingrese correro </small>
     </div>
   </div>
 
