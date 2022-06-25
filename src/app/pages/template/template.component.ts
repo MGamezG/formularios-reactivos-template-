@@ -8,24 +8,31 @@ import { PaisService } from 'src/app/services/pais.service';
   styleUrls: ['./template.component.scss']
 })
 export class TemplateComponent implements OnInit {
-  user={
-    nombre:'miguel',
-    correo:'mga@gmail.con',
-    apellido:'gamez'
+  user = {
+    nombre: 'miguel',
+    correo: 'mga@gmail.con',
+    apellido: 'gamez',
+    pais:''
   }
+  paises: any[] = [];
 
-  constructor( private paisService:PaisService) { }
+  constructor(private paisService: PaisService) { }
 
   ngOnInit(): void {
     this.paisService.getPaises()
-    .subscribe(paises=>{
-      console.log(paises);
-    });
+      .subscribe(paises => {
+        console.log(paises);
+        this.paises=paises;
+        this.paises.unshift({
+          nombre:'[seleccione pais]',
+          codigo:''
+        })
+      });
   }
-  guardar(forma:NgForm){
+  guardar(forma: NgForm) {
     console.log(forma);
     if (forma.invalid) {
-      Object.values(forma.controls).forEach(control=>{
+      Object.values(forma.controls).forEach(control => {
         console.warn("en el control");
         control.markAllAsTouched();
       });
