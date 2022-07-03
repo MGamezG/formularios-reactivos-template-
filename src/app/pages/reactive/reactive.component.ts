@@ -30,6 +30,10 @@ export class ReactiveComponent implements OnInit {
       nombre:['',[Validators.required,Validators.minLength(5) ]],//validadores sincronos, se pueden hacer inmediatamente sin requeri de servicios web
       apellido:['',[Validators.required,Validators.minLength(5) ]],
       correo:['',[Validators.required ,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      direccion:this.fb.group({
+        distrito:['',Validators.required],
+        ciudad:['',Validators.required]
+      })
     })
   }
   save(){
