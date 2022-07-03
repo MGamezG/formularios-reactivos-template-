@@ -16,6 +16,15 @@ export class ReactiveComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  get nameNotValid(){
+    return this.forma.get('nombre')?.invalid && this.forma.get('nombre')?.touched
+  }
+  get surnameNotValid(){
+    return this.forma.get('apellido')?.invalid && this.forma.get('apellido')?.touched
+  }
+  get emailNotValid(){
+    return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched
+  }
   createForm(){
     this.forma=this.fb.group({
       nombre:['',[Validators.required,Validators.minLength(5) ]],//validadores sincronos, se pueden hacer inmediatamente sin requeri de servicios web
@@ -25,6 +34,12 @@ export class ReactiveComponent implements OnInit {
   }
   save(){
     console.log(this.forma)
+    if (this.forma.invalid) {
+      return Object.values(this.forma.controls).forEach(control => {
+        console.warn("en el control");
+        control.markAllAsTouched();
+      });
+    }
   }
 
 }
