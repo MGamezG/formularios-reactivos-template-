@@ -25,6 +25,12 @@ export class ReactiveComponent implements OnInit {
   get emailNotValid(){
     return this.forma.get('correo')?.invalid && this.forma.get('correo')?.touched
   }
+  get districtNotValid(){
+    return this.forma.get('direccion.distrito')?.invalid && this.forma.get('direccion.distrito')?.touched
+  }
+  get cityNotValid(){
+    return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched
+  }
   createForm(){
     this.forma=this.fb.group({
       nombre:['',[Validators.required,Validators.minLength(5) ]],//validadores sincronos, se pueden hacer inmediatamente sin requeri de servicios web
@@ -40,8 +46,13 @@ export class ReactiveComponent implements OnInit {
     console.log(this.forma)
     if (this.forma.invalid) {
       return Object.values(this.forma.controls).forEach(control => {
+        if(control instanceof FormGroup){
+          Object.values(control.controls).forEach(control=>control.markAllAsTouched());
+        }else{
+          control.markAllAsTouched();
+        }
         console.warn("en el control");
-        control.markAllAsTouched();
+
       });
     }
   }
