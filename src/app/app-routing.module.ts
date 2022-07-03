@@ -9,6 +9,11 @@ const routes: Routes = [
     component:ReactiveComponent
    },
    {
+    path:'',
+    redirectTo:'/reactive',
+    pathMatch:'full'
+   },
+   {
      path:'template',
      component:TemplateComponent
    }
