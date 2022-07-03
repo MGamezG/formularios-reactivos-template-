@@ -12,6 +12,7 @@ export class ReactiveComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.createForm();
+    this.chargeData();
    }
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class ReactiveComponent implements OnInit {
   get cityNotValid(){
     return this.forma.get('direccion.ciudad')?.invalid && this.forma.get('direccion.ciudad')?.touched
   }
+
   createForm(){
     this.forma=this.fb.group({
       nombre:['',[Validators.required,Validators.minLength(5) ]],//validadores sincronos, se pueden hacer inmediatamente sin requeri de servicios web
@@ -41,6 +43,26 @@ export class ReactiveComponent implements OnInit {
         ciudad:['',Validators.required]
       })
     })
+  }
+  chargeData(){
+  //   this.forma.setValue({
+  //     nombre:'miguel',
+  //     apellido:'gamez',
+  //     correo: "practicante@gta.ai",
+  //     direccion: {
+  //     distrito: "fsdfsdfs",
+  //     ciudad: "fsadfas"
+  //          }
+  //   });
+  this.forma.setValue({
+    nombre:'miguel',
+    apellido:'gamez',
+    correo: "practicante@gta.ai",
+    direccion: {
+    distrito: "fsdfsdfs",
+    ciudad: "fsadfas"
+              }
+         });
   }
   save(){
     console.log(this.forma)
@@ -55,6 +77,9 @@ export class ReactiveComponent implements OnInit {
 
       });
     }
+    // this.forma.reset({
+
+    // });
   }
 
 }
